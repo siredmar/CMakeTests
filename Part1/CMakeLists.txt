@@ -72,8 +72,7 @@ target_link_libraries (Tutorial  ${EXTRA_LIBS})
 install (TARGETS Tutorial DESTINATION bin)
 install (FILES "${PROJECT_BINARY_DIR}/inc/TutorialConfig.h" DESTINATION include)
 
-
-#################################
+#################################4
 # Basic testing the application #
 # Tests if the program does	    #
 #  * run                        #
@@ -99,15 +98,13 @@ do_test(../bin/Tutorial -25 "-25 is 0")
 do_test(../bin/Tutorial 0.0001 "0.0001 is 0.01")
 do_test(../bin/Tutorial a "Input must be an integer number!")
 
-
-########################
-# Testing via CppUTest #
-########################
-# Building test binary
-add_subdirectory("${PROJECT_SOURCE_DIR}/UnitTest")
-
+# ########################
+# # Testing via CppUTest #
+# ########################
+# # Building test binary
+# #add_subdirectory("${PROJECT_SOURCE_DIR}/UnitTest")
+#
 # # Perform tests with cpputest
-# add_custom_target(cpputest)
 # #set_target_properties(cpputest PROPERTIES EXCLUDE_FROM_DEFAULT_BUILD 1)
 # # Function: Build test and add command to execute it via target 'test'
 # function(add_test_without_ctest target)
@@ -117,7 +114,14 @@ add_subdirectory("${PROJECT_SOURCE_DIR}/UnitTest")
 #         return()
 #     endif()
 #
-#     add_dependencies(test ${target})
-#     add_custom_command(TARGET test POST_BUILD
-#         COMMAND $<TARGET_FILE:${target}> --gtest_output=xml:gtests-${target}.xml)
+# 	message("II: 1")
+#     #add_dependencies(test ${target})
+#     add_custom_command(	TARGET UnitTest
+# 						POST_BUILD
+# 					COMMAND bash echo hello)#${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${target})
+# 	message("II: 2")
 # endfunction()
+# add_custom_target(UnitTest)
+# add_test_without_ctest(${PROJECT_SOURCE_DIR}/UnitTest)
+
+add_subdirectory(UnitTest)
