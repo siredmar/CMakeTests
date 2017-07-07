@@ -79,7 +79,7 @@ install (FILES "${PROJECT_BINARY_DIR}/inc/TutorialConfig.h" DESTINATION include)
 #  * run                        #
 #  * not segfault               #
 #  * returns 0                  #
-##################################
+#################################
 include(CTest)
 
 # Adding a single test manually
@@ -98,3 +98,26 @@ do_test(../bin/Tutorial 25 "25 is 5")
 do_test(../bin/Tutorial -25 "-25 is 0")
 do_test(../bin/Tutorial 0.0001 "0.0001 is 0.01")
 do_test(../bin/Tutorial a "Input must be an integer number!")
+
+
+########################
+# Testing via CppUTest #
+########################
+# Building test binary
+add_subdirectory("${PROJECT_SOURCE_DIR}/UnitTest")
+
+# # Perform tests with cpputest
+# add_custom_target(cpputest)
+# #set_target_properties(cpputest PROPERTIES EXCLUDE_FROM_DEFAULT_BUILD 1)
+# # Function: Build test and add command to execute it via target 'test'
+# function(add_test_without_ctest target)
+#     add_subdirectory(${target})
+#
+#     if(NOT TARGET ${target})
+#         return()
+#     endif()
+#
+#     add_dependencies(test ${target})
+#     add_custom_command(TARGET test POST_BUILD
+#         COMMAND $<TARGET_FILE:${target}> --gtest_output=xml:gtests-${target}.xml)
+# endfunction()
